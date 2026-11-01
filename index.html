@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compétences IA des apprenants : guide de navigation</title>
+<meta name="description" content="Naviguer dans le référentiel UNESCO de compétences en IA pour les apprenants (4 aspects, 3 niveaux, 12 blocs) et trouver la compétence à travailler à partir d’une pratique d’élève.">
+<style>
+:root{
+  --bg:#f7f4ee; --fg:#1d1b18; --muted:#5c564d; --card:#ffffff; --line:#ddd5c7; --soft:#efe9dd;
+  --link:#7a2e0e; --focus:#0b57d0; --shadow:0 1px 2px rgba(40,30,10,.08),0 4px 14px rgba(40,30,10,.06);
+  --humain:#9a3f12; --humain-t:#fbeee6;
+  --ethique:#5b34b0; --ethique-t:#f0eafb;
+  --technique:#14609f; --technique-t:#e6f0fa;
+  --conception:#23693f; --conception-t:#e5f3ea;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#161411; --fg:#efe9df; --muted:#b4ab9c; --card:#211e1a; --line:#3a352d; --soft:#2a2620;
+    --link:#f0a37a; --focus:#8ab4f8; --shadow:none;
+    --humain:#f0a37a; --humain-t:#33231a;
+    --ethique:#c3a8f5; --ethique-t:#2a2038;
+    --technique:#8cc0f0; --technique-t:#18283a;
+    --conception:#8fd3a9; --conception-t:#18301f;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
+h1,h2,h3{font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif;line-height:1.2;margin:0 0 .5rem}
+h1{font-size:clamp(1.6rem,4vw,2.2rem)} h2{font-size:1.35rem} h3{font-size:1.1rem}
+a{color:var(--link)}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+header.top{border-bottom:1px solid var(--line);background:var(--card)}
+.top .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px}
+.brand{font-family:"Iowan Old Style",Georgia,serif;font-weight:700;font-size:1.15rem;text-decoration:none;color:var(--fg)}
+.brand small{display:block;font:400 .8rem/1.3 system-ui,sans-serif;color:var(--muted)}
+nav.main{display:flex;gap:6px;flex-wrap:wrap}
+nav.main a{padding:8px 14px;border-radius:999px;text-decoration:none;color:var(--fg);border:1px solid transparent;font-weight:600;font-size:.95rem}
+nav.main a:hover{background:var(--soft)}
+nav.main a[aria-current="page"]{background:var(--fg);color:var(--bg)}
+main{padding:24px 0 64px;outline:none}
+h1[tabindex="-1"]:focus{outline:none}
+.lead{font-size:1.05rem;color:var(--muted);max-width:70ch;margin:.25rem 0 1.25rem}
+.crumbs{font-size:.9rem;color:var(--muted);margin-bottom:10px}
+.crumbs a{color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow)}
+.chip{display:inline-flex;gap:6px;align-items:center;font-size:.8rem;font-weight:700;border-radius:999px;padding:2px 10px;border:1px solid currentColor;white-space:nowrap}
+.chip.lvl{color:var(--muted);background:transparent}
+.a-humain{--a:var(--humain);--t:var(--humain-t)} .a-ethique{--a:var(--ethique);--t:var(--ethique-t)}
+.a-technique{--a:var(--technique);--t:var(--technique-t)} .a-conception{--a:var(--conception);--t:var(--conception-t)}
+.chip[class*="a-"]{color:var(--a);background:var(--t)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px}
+.tabs a{padding:7px 14px;border:1px solid var(--line);border-radius:8px;text-decoration:none;color:var(--fg);background:var(--card);font-weight:600;font-size:.92rem}
+.tabs a[aria-current="page"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.search{display:flex;gap:8px;align-items:center;margin:0 0 16px;flex-wrap:wrap}
+.search label{font-weight:600;font-size:.92rem}
+.search input{flex:1 1 260px;min-width:0;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--fg);font:inherit}
+/* matrice */
+.matrix{display:grid;grid-template-columns:210px repeat(3,minmax(0,1fr));gap:10px}
+.mh{padding:6px 8px 2px;font-size:.9rem;color:var(--muted)}
+.mh strong{display:block;color:var(--fg);font-family:"Iowan Old Style",Georgia,serif;font-size:1.15rem}
+.mh a{text-decoration:none;color:inherit}
+.ma{padding:10px 12px;border-left:6px solid var(--a);background:var(--t);border-radius:8px}
+.ma strong{display:block;font-size:.98rem;margin-bottom:2px}
+.ma span.d{font-size:.82rem;color:var(--muted);display:block}
+.mc{display:flex;flex-direction:column;gap:6px;padding:12px 14px;border:1px solid var(--line);border-top:4px solid var(--a);border-radius:10px;background:var(--card);text-decoration:none;color:var(--fg);box-shadow:var(--shadow);min-height:150px}
+.mc:hover{background:var(--t)}
+.mc .lv{font-size:.76rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.mc b{font-family:"Iowan Old Style",Georgia,serif;font-size:1.08rem;line-height:1.25}
+.mc span.q{font-size:.88rem;color:var(--muted)}
+.mc .meta{margin-top:auto;font-size:.8rem;color:var(--a);font-weight:700}
+@media (max-width:820px){
+  .matrix{grid-template-columns:1fr}
+  .mh{display:none}
+  .mc{min-height:0}
+  .ma{margin-top:12px}
+}
+/* listes de blocs */
+.blocklist{display:grid;gap:14px}
+.bcard{border-left:6px solid var(--a)}
+.bcard header{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin-bottom:6px}
+.bcard h3{margin:0}
+.bcard ul{margin:.3rem 0 .6rem;padding-left:1.2rem}
+.cgl{list-style:none;padding:0!important;margin:.4rem 0}
+.cgl li{display:flex;gap:10px;margin:.35rem 0}
+.code{font:700 .78rem/1.6 ui-monospace,Menlo,Consolas,monospace;background:var(--soft);border-radius:6px;padding:0 6px;height:max-content;white-space:nowrap;color:var(--fg)}
+details{border:1px solid var(--line);border-radius:10px;background:var(--card);margin:10px 0}
+details>summary{cursor:pointer;padding:10px 14px;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:10px}
+details>summary::-webkit-details-marker{display:none}
+details>summary::after{content:"＋";color:var(--muted)}
+details[open]>summary::after{content:"－"}
+details>.in{padding:0 14px 12px}
+.btn{display:inline-block;padding:9px 16px;border-radius:8px;border:1px solid var(--fg);background:var(--fg);color:var(--bg);font:inherit;font-weight:700;text-decoration:none;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--fg)}
+.btn.small{padding:5px 12px;font-size:.88rem}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.muted{color:var(--muted)}
+.note{background:var(--soft);border-radius:10px;padding:10px 14px;font-size:.92rem}
+/* fiche */
+.fhead{border-left:8px solid var(--a);background:var(--t);border-radius:12px;padding:16px 18px;margin-bottom:16px}
+.fhead h1{margin:6px 0 4px}
+.quick{font-size:1.08rem;margin:.4rem 0 0}
+.quick small{display:block;color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.prog{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0 0 18px}
+.prog a{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);text-decoration:none;color:var(--fg)}
+.prog a[aria-current="true"]{border:2px solid var(--a);background:var(--t)}
+.prog small{display:block;color:var(--muted);font-weight:700;font-size:.75rem;text-transform:uppercase}
+.prog b{font-size:.95rem}
+@media (max-width:640px){.prog{grid-template-columns:1fr}}
+.pn{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:22px}
+.cgbig{display:grid;gap:10px;margin:.4rem 0}
+.cgbig .it{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--card)}
+.cgbig .it b{display:block}
+.cgbig .it p{margin:.3rem 0 0;color:var(--muted);font-size:.93rem}
+.mlist{display:grid;gap:10px}
+.mlist .it{border-left:4px solid var(--a);padding:2px 0 2px 12px}
+.mlist .it b{display:block}
+.mlist .it p{margin:.15rem 0 0;color:var(--muted);font-size:.93rem}
+/* parcours */
+.steps{display:flex;gap:8px;margin:0 0 14px;padding:0;list-style:none;flex-wrap:wrap}
+.steps li{padding:4px 12px;border-radius:999px;border:1px solid var(--line);font-size:.85rem;font-weight:700;color:var(--muted)}
+.steps li[aria-current="step"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.steps li.done{color:var(--fg)}
+.choices{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
+.choice{display:block;text-decoration:none;color:var(--fg);padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+.choice:hover{border-color:var(--fg)}
+.choice b{display:block;font-size:1.02rem;line-height:1.3}
+.choice span{display:block;color:var(--muted);font-size:.9rem;margin-top:4px}
+.recap{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.recap .chip{font-weight:600;border-color:var(--line);color:var(--fg);background:var(--card);white-space:normal}
+.result{border-left:8px solid var(--a);background:var(--t);border-radius:12px;padding:16px 18px;margin:8px 0 16px}
+.result h2{margin:.2rem 0}
+.result .big{font-size:1.15rem;font-weight:700;margin:.4rem 0}
+.also{display:grid;gap:8px;margin:.4rem 0}
+.also a{display:block;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);text-decoration:none;color:var(--fg)}
+.also small{color:var(--muted)}
+textarea.fa{width:100%;min-height:420px;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--fg);font:14px/1.5 ui-monospace,Menlo,Consolas,monospace;resize:vertical}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:760px){.three{grid-template-columns:1fr}}
+.three .card{padding:12px 14px}
+.three .card.cur{border:2px solid var(--a);background:var(--t)}
+.copied{color:var(--conception);font-weight:700;font-size:.9rem}
+footer{border-top:1px solid var(--line);padding:18px 0 40px;color:var(--muted);font-size:.85rem}
+dl.gl dt{font-weight:700;margin-top:.7rem} dl.gl dd{margin:.1rem 0 0 0;color:var(--muted)}
+@media print{
+  header.top,nav,.search,.tabs,.btn,.pn,footer{display:none!important}
+  body{background:#fff;color:#000}
+  details{border:none} details>summary::after{content:""} details:not([open])>.in{display:block}
+  .card,.mc{box-shadow:none}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="sr" style="position:absolute;left:-999px" onfocus="this.style.left='8px'" onblur="this.style.left='-999px'">Aller au contenu</a>
+<header class="top"><div class="wrap">
+  <a class="brand" href="#/carte">Compétences IA des apprenants<small>Guide de navigation du référentiel UNESCO · 4 aspects, 3 niveaux, 12 blocs</small></a>
+  <nav class="main" aria-label="Navigation principale">
+    <a href="#/carte" data-nav="carte">Cartographie</a>
+    <a href="#/parcours" data-nav="parcours">Parcours guidé</a>
+    <a href="#/reperes" data-nav="reperes">Repères et sources</a>
+  </nav>
+</div></header>
+<main id="main" tabindex="-1"><div class="wrap" id="app"></div></main>
+<footer><div class="wrap">Outil de navigation non officiel, construit à partir du chapitre 3 (p. 18-21) et du chapitre 4 (p. 27-52) du <em>Référentiel de compétences en IA pour les apprenants</em> de l’UNESCO (tableaux 1 à 4). Les numéros de page cités sont ceux du document imprimé. Le texte du référentiel fait foi.</div></footer>
+
+<script>
+/* Données du référentiel (UNESCO, Référentiel de compétences en IA pour les apprenants, chap. 3-4, tableaux 1 à 4).
+   Les libellés de compétences (CG) sont repris du PDF ; les champs « d » (détail), « quick » et les méthodes sont des condensés fidèles. */
+const ASPECTS = {
+  humain:     { n: "Perspective centrée sur l’humain", s: "Humain", sym: "◆", d: "Valeurs, esprit critique et responsabilités : pourquoi, quand et comment utiliser l’IA, et qui en répond." },
+  ethique:    { n: "Éthique de l’IA", s: "Éthique", sym: "●", d: "Composantes sociales et éthiques : les principes qui encadrent le comportement humain tout au long du cycle de vie de l’IA." },
+  technique:  { n: "Techniques et applications de l’IA", s: "Techniques", sym: "▲", d: "Connaissances conceptuelles sur l’IA et compétences pour utiliser des outils sur des tâches authentiques." },
+  conception: { n: "Conception de systèmes d’IA", s: "Conception", sym: "■", d: "Compétences d’ingénierie : définir le problème, construire l’architecture, former, tester et optimiser." }
+};
+const LEVELS = {
+  1: { n: "Comprendre", d: "Pour tous les apprenants : comprendre ce qu’est l’IA et ce qui la sous-tend (valeurs, éthique, concepts, processus).",
+       note: "Niveau qui s’adresse à tous les apprenants. Il fournit les bases attitudinales, cognitives et pratiques de la poursuite de l’apprentissage." },
+  2: { n: "Appliquer", d: "Utilisateur responsable, actif et efficace : transférer et adapter ses acquis à des situations plus complexes.",
+       note: "Pertinent pour tous les apprenants. Pour beaucoup, ce niveau marquera la sortie du dispositif d’acquisition de compétences en IA à l’école." },
+  3: { n: "Créer", d: "Cocréateur d’IA : concevoir, évaluer, améliorer des solutions, et défendre des pratiques éthiques.",
+       note: "Niveau plus spécialisé, qui demande un semestre ou plus. Pour les élèves peu intéressés, il est plutôt à proposer en option qu’en tronc commun." }
+};
+const BLOCKS = [
+{ id: "4.1.1", aspect: "humain", level: 1, name: "Agentivité humaine", alt: "Pouvoir d’action humain", pages: "p. 29-30",
+  quick: "L’élève comprend que l’IA est conçue, pilotée et contrôlée par des humains, et que leurs choix ont des conséquences.",
+  attendu: [
+    "Reconnaître que l’IA est dirigée par les êtres humains et que les décisions de ses créateurs influencent son impact sur les droits humains.",
+    "Comprendre ce que signifie le contrôle humain de l’IA et quelles seraient les conséquences s’il faisait défaut.",
+    "Saisir ce que protéger l’agentivité humaine implique à chaque étape : conception, mise à disposition, utilisation."],
+  cg: [
+    { c: "CG4.1.1.1", t: "Faire comprendre que l’IA est pilotée par l’humain.", d: "À partir d’outils concrets : propriété et confidentialité des données, explicabilité, contrôle humain, décision humaine. L’IA ne peut pas remplacer la pensée humaine ni le développement intellectuel." },
+    { c: "CG4.1.1.2", t: "Faciliter la compréhension de la nécessité d’exercer un contrôle humain approprié sur l’IA.", d: "Exposer à des scénarios réels de négligence humaine : réglementation faible, IA qui remplace l’humain pour des décisions cruciales, absence de validation humaine de l’exactitude des résultats." },
+    { c: "CG4.1.1.3", t: "Favoriser la réflexion critique sur la relation dynamique entre l’action des êtres humains et celle de la machine.", d: "Cas où l’IA soutient l’agentivité humaine (correcteur orthographique, traduction, diagnostic) ; débat sur la limite entre part humaine et part machine." }],
+  methodes: [
+    { t: "Cartes conceptuelles de l’agentivité humaine", d: "Dessiner où l’humain décide aux étapes-clés du cycle de vie d’un outil d’IA ; réfléchir aux conséquences d’une perte d’autonomie." },
+    { t: "Simuler un procès sur la loi sur l’IA", d: "Jouer le jury pour évaluer des exemples de systèmes d’IA qui devraient être interdits et délibérer sur les intentions de leurs créateurs." },
+    { t: "Interaction humain-IA à partir de scénarios", d: "Analyser des exemples du lieu de travail ou de la vie quotidienne : qui fait quoi, de l’humain ou de l’outil." },
+    { t: "Débat sur la frontière dynamique humain / machine", d: "À partir de dilemmes de dépendance à la machine, débattre de l’évolution des rôles dans la résolution de problèmes et la décision." }],
+  env: ["Supports papier et hors connexion (articles, lectures imprimées, feuilles de travail)", "Outils d’IA disponibles localement, dont les téléphones avec applications d’IA", "Vidéos préchargées, études de cas, scénarios à dilemme", "Moteurs de recherche, vidéos et cours en ligne"] },
+
+{ id: "4.1.2", aspect: "ethique", level: 1, name: "Intériorisation de l’éthique", alt: "Embodied ethics", pages: "p. 31-32",
+  quick: "L’élève connaît les principes éthiques de l’IA et les traduit dans sa façon de réfléchir et d’utiliser les outils.",
+  attendu: [
+    "Comprendre les questions éthiques de base liées à l’IA et son impact potentiel sur les droits humains, la justice sociale, l’inclusion, l’équité et le changement climatique, dans son contexte local et personnel.",
+    "Comprendre, intérioriser et traduire dans ses pratiques les principes clés : ne pas nuire, proportionnalité, non-discrimination (avec inclusivité et durabilité), détermination humaine, transparence."],
+  cg: [
+    { c: "CG4.1.2.1", t: "Illustrer les dilemmes liés à l’IA et identifier les principales raisons des conflits éthiques.", d: "Avec des outils concrets, faire apparaître les décisions à dilemme des créateurs : collecter beaucoup de données ou protéger leur propriété, utiliser les données privées pour l’entraînement ou protéger la vie privée, privilégier la sécurité ou accélérer l’itération." },
+    { c: "CG4.1.2.2", t: "Faciliter la compréhension, sur la base de scénarios, des principes éthiques de l’IA et de leurs implications personnelles.", d: "Discuter de cas réels adaptés à l’âge autour des six principes : ne pas nuire, proportionnalité, non-discrimination, durabilité, détermination humaine, transparence et explicabilité." },
+    { c: "CG4.1.2.3", t: "Guider la réflexion et l’intériorisation quant aux principes éthiques sur l’IA.", d: "Mesurer les implications pour les droits, la confidentialité des données, la sécurité, l’équité, l’inclusion, la justice sociale et la durabilité ; réfléchir à des attitudes personnelles (plaider pour des interfaces inclusives, signaler des préjugés discriminatoires)." }],
+  methodes: [
+    { t: "Études de cas sur des controverses autour de l’IA", d: "Scénarios réels ou simulés ; discuter des raisons des conflits éthiques ; dessiner des infographies ou cartes conceptuelles des principes." },
+    { t: "Réflexion individuelle ou collective sur les dilemmes", d: "Discussion de groupe et prise de position (les grands modèles de langage doivent-ils utiliser les données des communautés locales ? quelle part de vie privée céder contre les services de l’IA ?) ; essais, affiches, dessins, story-boards." },
+    { t: "Recherche et validation d’exemples d’« IA pour le bien public »", d: "Chercher, valider et catégoriser des exemples d’IA qui servent vraiment l’équité, l’inclusion, la diversité linguistique et culturelle, la justice sociale ou l’environnement." }],
+  env: ["Cadres et supports hors connexion (histoires imprimées, études de cas, feuilles de travail, affiches)", "Outils d’IA disponibles localement, dont applications mobiles", "Vidéos préchargées, ressources liées à des cas ou scénarios à dilemme", "Moteurs de recherche, vidéos en ligne"] },
+
+{ id: "4.1.3", aspect: "technique", level: 1, name: "Fondements de l’IA", alt: "Fondations de l’IA", pages: "p. 32-34",
+  quick: "L’élève sait ce qu’est — et n’est pas — l’IA, comment elle apprend à partir de données et d’algorithmes, et ce qu’elle doit aux autres disciplines.",
+  attendu: [
+    "Acquérir des connaissances, une compréhension et des compétences de base sur les données et les algorithmes.",
+    "Mesurer l’importance des connaissances interdisciplinaires nécessaires pour approfondir la compréhension de l’IA.",
+    "Relier ces connaissances à leurs activités dans la société et la vie quotidienne, avec une perspective centrée sur l’humain et des principes éthiques."],
+  cg: [
+    { c: "CG4.1.3.1", t: "Expliquer la définition et la portée de l’IA.", d: "À partir d’exemples (reconnaissance faciale, recommandations de réseaux sociaux, diagnostics médicaux, voitures autonomes…), comprendre ce qu’est l’IA et ce qu’elle n’est pas ; trouver et partager des outils exemplaires des grandes catégories." },
+    { c: "CG4.1.3.2", t: "Acquérir et développer des connaissances conceptuelles sur la manière dont l’IA est entraînée à partir de données et d’algorithmes.", d: "Comprendre les trois types d’algorithmes (apprentissage supervisé, non supervisé, par renforcement) et comment les données sont acquises et étiquetées ; réfuter l’idée que l’IA automatisera la programmation et que les humains n’ont plus à apprendre les algorithmes." },
+    { c: "CG4.1.3.3", t: "Favoriser une réflexion ouverte sur l’IA et une base interdisciplinaire pour l’IA.", d: "Découvrir des méthodes et sujets de recherche (réseaux de neurones artificiels, IA forte et faible) ; comprendre l’interaction entre l’IA et les sciences, les langues et les sciences sociales." },
+    { c: "CG4.1.3.4", t: "Concrétiser les considérations centrées sur l’humain dans la conception et l’utilisation de l’IA.", d: "Réfléchir à l’impact de l’IA sur la vie quotidienne, le travail et les relations sociales ; souligner le rôle des humains à chaque étape du cycle de vie (chercheurs, ingénieurs des données, travailleurs des données, bêta-testeurs, régulateurs…) ; questions éthiques sur les données d’entraînement." }],
+  methodes: [
+    { t: "Définition et portée de l’IA à partir d’exemples", d: "Étudier et expérimenter des exemples d’outils (médical, commercial, IA générative…) pour comprendre ce qu’est l’IA et ce qu’elle n’est pas." },
+    { t: "Apprentissage en spirale, des exemples aux concepts", d: "Guider l’abstraction de la formation d’un modèle : définition du problème, données, formation, évaluation, déploiement, itération ; dessiner le diagramme du cycle de vie d’un système." },
+    { t: "Analyse de cas d’outils innovants", d: "Rechercher des outils ou usages innovants, identifier leurs techniques et catégories, rédiger un essai argumenté ou présenter une soutenance orale." },
+    { t: "Consolider les bases multidisciplinaires, avec accent sur les mathématiques", d: "Montrer que l’IA moderne est enracinée dans les mathématiques (algèbre, probabilités, statistiques, K plus proches voisins, régression linéaire, arbres de décision…)." }],
+  env: ["Manuels, essais, feuilles de travail et matériel imprimé (hors connexion)", "Vidéos en ligne ou téléchargées présentant des innovations ou des outils d’IA", "Outils d’IA disponibles localement, dont applications de base assistées par l’IA sur smartphones", "Outils en ligne : créateurs d’images ou de vidéos, IA générative, recommandations de vidéos"] },
+
+{ id: "4.1.4", aspect: "conception", level: 1, name: "Délimitation des problèmes", alt: "Détermination du champ d’application du problème", pages: "p. 35-36",
+  quick: "L’élève se demande si l’IA est la bonne réponse avant de l’utiliser, et sait définir clairement un problème avant d’y appliquer l’IA.",
+  attendu: [
+    "Comprendre l’importance de la « définition du problème d’IA » comme point de départ de l’innovation.",
+    "Examiner si l’IA devrait être utilisée dans une situation donnée d’un point de vue juridique, éthique et logique.",
+    "Définir les limites, objectifs et contraintes d’un problème avant d’entraîner un modèle ; acquérir les compétences de planification de projet nécessaires pour concevoir un système d’IA."],
+  cg: [
+    { c: "CG4.1.4.1", t: "Développer la pensée critique quant aux cas où l’IA ne devrait pas être utilisée.", d: "Analyser pourquoi l’IA devrait ou non être utilisée face à un défi réel, au regard des implications humaines et environnementales ; préciser quand elle ne peut ou ne doit pas être appliquée (solution non-IA équivalente avec moins de risque, affaiblissement de la conscience humaine, manipulation des actions)." },
+    { c: "CG4.1.4.2", t: "Favoriser l’acquisition et le renforcement des compétences en matière de définition d’un problème à résoudre par un système d’IA.", d: "Par un projet de simulation, identifier et définir un problème qui devrait et pourrait être résolu par un nouveau modèle ; formuler des énoncés de problème précis pour ne pas perdre temps et efforts." },
+    { c: "CG4.1.4.3", t: "Développer des compétences pour évaluer les besoins des systèmes d’IA en matière de données, d’algorithmes et de ressources informatiques.", d: "Évaluer les besoins en données, algorithmes, logiciels, capacités informatiques et matériel ; étudier la faisabilité au regard des restrictions réglementaires et éthiques et des coûts." }],
+  methodes: [
+    { t: "Simuler l’examen d’une proposition de projet", d: "Débat pour décider si l’IA devrait être utilisée (données suffisantes, implications éthiques, impact environnemental, solutions alternatives) ; prévoir dans l’examen une case à cocher." },
+    { t: "Simuler la définition du problème et la justification d’un nouveau système d’IA", d: "Chercher un problème dans la vie quotidienne ou la communauté (arrosage automatique du jardin de l’école…), le cerner et produire un énoncé de problème." },
+    { t: "Laboratoire de prétraitement des données", d: "Expérimenter sur un jeu de données de base et observer comment le prétraitement affecte les performances du modèle." }],
+  env: ["Feuilles de travail et études de cas sur papier, impressions de prototypes ou de plans (hors connexion)", "Appareils numériques avec connexion à Internet", "Systèmes d’IA en ligne dûment sélectionnés"] },
+
+{ id: "4.2.1", aspect: "humain", level: 2, name: "Responsabilité humaine", alt: "", pages: "p. 37-39",
+  quick: "L’élève comprend que responsabilité et décision restent humaines même quand l’IA aide, et défend ce principe.",
+  attendu: [
+    "Reconnaître que les responsabilités humaines sont des obligations légales des créateurs et fournisseurs de services d’IA, et comprendre ses propres responsabilités quand il conçoit ou utilise l’IA.",
+    "Prendre conscience que la responsabilité est juridique et sociale quand l’IA aide à décider, et défendre le principe de ne pas céder le pouvoir de décision à l’IA pour les enjeux cruciaux.",
+    "Améliorer son jugement et son esprit critique face aux affirmations trompeuses et aux prédictions selon lesquelles l’IA peut se substituer à la pensée et à la décision humaines."],
+  cg: [
+    { c: "CG4.2.1.1", t: "Adopter un point de vue selon lequel la responsabilité humaine constitue une obligation légale pour les créateurs d’IA et les fournisseurs de services.", d: "Comprendre que créateurs, prestataires et institutions qui déploient des outils d’IA répondent des problèmes juridiques et des violations que le système peut causer ; et quelles responsabilités les apprenants assumeront en créant des outils d’IA." },
+    { c: "CG4.2.1.2", t: "Faire comprendre que la responsabilité humaine est une responsabilité juridique et sociale lorsqu’on utilise l’IA pour prendre des décisions concernant l’humanité.", d: "Poser des questions critiques sur les capacités réelles des outils et démystifier le battage médiatique ; évaluer les conséquences de l’usage institutionnel de l’IA pour décider (profilage, employabilité) ; comprendre pourquoi ne pas l’utiliser pour remplacer l’humain dans les décisions à fort enjeu (notes, admissions)." },
+    { c: "CG4.2.1.3", t: "Cultiver une posture réflexive selon laquelle la responsabilité humaine exige des compétences personnelles pour orienter l’utilisation intentionnelle de l’IA.", d: "S’interroger sur la manière dont l’automatisation des analyses documentaires, de la rédaction et de la création artistique peut nuire à la réflexion et au développement intellectuel ; discuter d’actions concrètes pour se protéger et protéger ses pairs contre l’usurpation de la pensée humaine par les résultats de l’IA." }],
+  methodes: [
+    { t: "Rédiger des lignes directrices sur la responsabilité humaine", d: "Jouer des créateurs d’IA et des propriétaires de données, discuter de leurs responsabilités juridiques et éthiques ; rédiger des lignes directrices d’autodiscipline." },
+    { t: "Étudier l’impact des décisions prises par l’IA et les voies de recours", d: "Chercher des exemples où l’IA détermine ou influence fortement des décisions (prêt étudiant, profilage…) ; révéler le rôle des humains et de l’IA dans les boucles de décision." },
+    { t: "Pratiques sur des scénarios d’utilisation de l’IA dans un but précis", d: "Utiliser l’IA pour exercer volontairement ses compétences d’écriture, de recherche, de réflexion ; discuter de la façon dont l’usage de l’IA sans responsabilité humaine (remettre une dissertation produite par l’IA) peut réduire le développement intellectuel ; définir des actions concrètes." }],
+  env: ["Paramètres et ressources hors connexion (études de cas imprimées, scénarios de jeux de rôle, vidéos, feuilles de travail)", "Outils d’IA en ligne : systèmes de gestion de l’apprentissage, plateformes de médias sociaux et d’IA générative"] },
+
+{ id: "4.2.2", aspect: "ethique", level: 2, name: "Utilisation sûre et responsable", alt: "Usage sécuritaire et responsable", pages: "p. 39-41",
+  quick: "L’élève utilise l’IA de façon responsable : il protège ses données et celles des autres, respecte les droits d’auteur et signale ce qui vient de l’IA.",
+  attendu: [
+    "Mettre en œuvre des pratiques d’IA responsables, dans le respect des principes éthiques et des réglementations locales.",
+    "Être conscient des risques liés à la divulgation de données personnelles et agir pour qu’elles ne soient collectées, utilisées, partagées, archivées et supprimées qu’avec son consentement délibéré et éclairé.",
+    "Connaître les incidents typiques de l’IA et les risques de certains systèmes, et savoir protéger sa sécurité et celle de ses pairs."],
+  cg: [
+    { c: "CG4.2.2.1", t: "Favoriser la conscience de soi et le respect usuel des principes éthiques pour l’utilisation responsable de l’IA.", d: "Construire et mettre à jour une « case à cocher » de principes : protection des données personnelles et de la vie privée, droits d’auteur, indication claire de l’endroit où apparaît le contenu généré par l’IA, éviter les entrées qui impliquent désinformation, discours haineux ou détails sensibles sur des personnes identifiables." },
+    { c: "CG4.2.2.2", t: "Offrir des possibilités de renforcer l’autodiscipline dans l’utilisation responsable de l’IA.", d: "Comprendre ses responsabilités personnelles, juridiques et éthiques et les conséquences d’une violation des règles ; s’autodiscipliner sur les données personnelles sensibles, les documents protégés, les images de personnes identifiables, le contenu généré par l’IA, la diffusion de fausses informations et de discours haineux." },
+    { c: "CG4.2.2.3", t: "Approfondir les connaissances pratiques sur l’utilisation sécuritaire de l’IA et la sensibilisation aux réglementations locales en vigueur.", d: "Catégoriser les risques de sécurité généraux et ceux d’outils précis, ainsi que les incidents typiques ; connaître ses droits sur les données et la vie privée ; s’exercer, sur des incidents simulés, à des stratégies de précaution." }],
+  methodes: [
+    { t: "Concevoir un « kit éthique » pour une utilisation autodisciplinée et responsable de l’IA", d: "À partir de scénarios de conflit éthique (partager des données privées ou protégées avec une IA, insérer du contenu généré par l’IA dans un travail scolaire, créer une vidéo avec les images d’autres personnes, diffuser de la désinformation), rédiger un kit à vérifier régulièrement." },
+    { t: "Simulation d’incidents typiques liés à l’IA et gestion des risques", d: "Simulations d’incidents ; stratégies préventives pour que les données personnelles ne soient utilisées qu’avec consentement éclairé ; conseils de sécurité ; sensibilisation aux réglementations protectrices." },
+    { t: "Commentaires des utilisateurs sur les politiques de confidentialité", d: "Rechercher des politiques de confidentialité de créateurs d’IA, vérifier leur conformité ; en cas de violation, rédiger une plainte ou une recommandation." },
+    { t: "Débattre de la propriété des contenus générés par l’IA", d: "Débat sur la propriété des contenus créés avec l’IA ; examiner les règles de droit d’auteur applicables à ces contenus." }],
+  env: ["Paramètres hors connexion (feuilles de travail, affiches, listes de contrôle des principes éthiques)", "Politiques de confidentialité et réglementations préalablement téléchargées, exemples de cas juridiques ou éthiques", "Outils d’IA disponibles localement, dont applications pour smartphones", "Outils d’IA en ligne, en particulier plateformes à algorithmes de recommandation et générateurs de contenu"] },
+
+{ id: "4.2.3", aspect: "technique", level: 2, name: "Compétences pour l’application", alt: "", pages: "p. 41-43",
+  quick: "L’élève sait manier des outils, données et bibliothèques d’IA libres et les évaluer de façon critique : il passe de la compréhension au maniement.",
+  attendu: [
+    "Construire une structure de connaissances adaptée à son âge sur les données, les algorithmes d’IA et la programmation, et acquérir des compétences d’application transférables.",
+    "Évaluer de manière critique et exploiter des outils d’IA, des bibliothèques de programmation et des ensembles de données gratuits et/ou libres."],
+  cg: [
+    { c: "CG4.2.3.1", t: "Offrir des possibilités de renforcer les connaissances et les compétences en matière de modélisation, d’ingénierie et d’analyse des données.", d: "Apprentissage par tâches concrètes sur les jeux de données : acquérir, nettoyer et transformer les données dans un format adapté au stockage, au traitement et à l’analyse." },
+    { c: "CG4.2.3.2", t: "Offrir des possibilités d’acquérir des compétences techniques adaptées à l’âge en matière de programmation de l’IA.", d: "Expliquer des exemples de systèmes par catégorie d’algorithmes (supervisé, non supervisé, par renforcement) : comment ils recueillent et traitent les données, sont entraînés, fonctionnent." },
+    { c: "CG4.2.3.3", t: "Encourager les apprenants à développer des compétences d’analyse et de synthèse pour exploiter des ensembles de données et des outils d’IA libres (open source).", d: "Apprentissage par problèmes pour évaluer de manière critique et exploiter des jeux de données libres (MNIST, CIFAR, ImageNet) et des outils (Teachable Machine, PyTorch, Keras) sur des tâches réelles ; améliorer la transférabilité des acquis." }],
+  methodes: [
+    { t: "Laboratoire sur les biais des données", d: "Expériences pratiques sur l’impact des valeurs aberrantes ou du déséquilibre des classes sur les performances du modèle ; éliminer les biais identifiables et comparer les résultats." },
+    { t: "Cours modulaires optionnels sur divers algorithmes d’IA", d: "Soutenir l’apprentissage par cohortes, selon les intérêts." },
+    { t: "Hackathons sur l’IA à partir de variantes de tâches authentiques", d: "Série de tâches avec variantes pour mettre en pratique des compétences transférables en programmation de l’IA." },
+    { t: "Démentir l’idée que l’IA automatisera le codage", d: "Rechercher les connaissances professionnelles requises ; réfléchir aux inégalités qui s’aggraveraient si moins de personnes acquièrent ces compétences fondamentales." }],
+  env: ["Ordinateurs avec connexion Internet", "Échantillons ou jeux de données publics accessibles localement", "Applications de programmation de l’IA ou bibliothèques open source", "Outils d’IA informatisés ou accessibles en ligne"] },
+
+{ id: "4.2.4", aspect: "conception", level: 2, name: "Conception de l’architecture", alt: "", pages: "p. 43-44",
+  quick: "L’élève sait comparer des solutions techniques et monter un prototype simple de système d’IA en y intégrant éthique et durabilité.",
+  attendu: [
+    "Cultiver des connaissances méthodologiques et des compétences techniques de base pour configurer une architecture évolutive, maintenable et réutilisable (couches de données, d’algorithmes, de modèles, d’interfaces).",
+    "Construire un prototype de système d’IA à partir de jeux de données, d’outils de programmation et de ressources informatiques.",
+    "Appliquer des valeurs humanistes et des principes éthiques approfondis dans la configuration, la construction et l’optimisation."],
+  cg: [
+    { c: "CG4.2.4.1", t: "Étayer l’acquisition de connaissances méthodologiques et de compétences techniques sur l’architecture de l’IA.", d: "Évaluer des architectures pour choisir une solution adaptée à un énoncé de problème ; configurer un prototype avec structure de données anti-biaisée, modèle économe en énergie, conception centrée sur l’humain, mesures pour tester et améliorer." },
+    { c: "CG4.2.4.2", t: "Soutenir l’élaboration des compétences techniques avancées et des compétences de gestion de projet nécessaires à la construction d’un système d’IA.", d: "Projet de prototype pour une tâche simple (par exemple un chatbot imitant les réponses d’un enseignant expérimenté) ; simuler l’entraînement d’un modèle ; gestion de projet : équilibrer la portée avec les ressources, répartir les responsabilités, évaluer de façon critique les ressources d’IA." }],
+  methodes: [
+    { t: "Simuler l’évaluation de cadres et de composants d’architecture", d: "Évaluer des cadres (TensorFlow, PyTorch, Scikit-learn), configurer un prototype, partager la configuration par organigrammes, diagrammes ou pseudo-code." },
+    { t: "Simuler l’exploitation des ressources pour construire un système d’IA", d: "Construire un système simulé sur dispositifs locaux ou en nuage ; chercher des compromis entre coûts et capacité de calcul, et entre robustesse des modèles et impact environnemental." },
+    { t: "Simuler l’amélioration de l’architecture", d: "Optimisation des hyper-paramètres et/ou réglage fin de modèles existants pour résoudre des problèmes simples." }],
+  env: ["Vidéos et indicateurs montrant comment mener des évaluations éthiques et techniques de modèles d’IA", "Exemples de systèmes d’IA sur ordinateur ou en ligne localement", "Jeux de données publics, bibliothèques open source", "Ressources de calcul en nuage hébergées localement ou partagées par les institutions"] },
+
+{ id: "4.3.1", aspect: "humain", level: 3, name: "Citoyenneté à l’ère de l’IA", alt: "La citoyenneté dans la société de l’IA", pages: "p. 45-47",
+  quick: "L’élève se pense comme citoyen d’une société où l’IA est partout : regard critique, responsabilités assumées, curiosité durable.",
+  attendu: [
+    "Développer une pensée critique sur les conséquences de l’IA pour les sociétés et élargir ses valeurs pour promouvoir une conception et une utilisation de l’IA au service d’un développement inclusif et écoresponsable.",
+    "Renforcer ses valeurs civiques et son sens de la responsabilité sociale comme citoyen d’une société de l’IA.",
+    "Accroître son ouverture d’esprit et sa curiosité permanente pour l’apprentissage et l’utilisation de l’IA, au service de l’épanouissement personnel."],
+  cg: [
+    { c: "CG4.3.1.1", t: "Être un citoyen critique en matière d’IA : favoriser cette prise de conscience.", d: "Connaissances factuelles sur l’adoption généralisée de l’IA comme infrastructure des activités sociales ; critique des préjugés amplifiés par l’IA envers les femmes, les groupes ethniques marginalisés et les personnes défavorisées ; effets sur les relations et structures sociales ; adaptation des règles juridiques, éthiques et sociales." },
+    { c: "CG4.3.1.2", t: "Favoriser les responsabilités personnelles et sociales dans les sociétés d’IA.", d: "Partager ses points de vue sur des sociétés d’IA souhaitables et définir les responsabilités des citoyens pour construire une société inclusive, écoresponsable et juste ; examiner les défis du respect des principes éthiques dans des situations authentiques complexes." },
+    { c: "CG4.3.1.3", t: "Nourrir le sentiment d’accomplissement personnel en tant que citoyen de l’IA et l’attitude d’apprentissage tout au long de la vie à l’égard de l’IA.", d: "Examiner l’impact de l’adoption de l’IA dans tous les secteurs et les compétences que la vie et le travail pourront exiger ; réfléchir à ses objectifs personnels dans une société où l’IA est omniprésente." }],
+  methodes: [
+    { t: "Études de cas : société de l’IA juste et inclusive contre les menaces de l’IA", d: "Analyser des cas où l’IA amplifie les préjugés, creuse les inégalités, affaiblit l’agentivité humaine, aggrave le changement climatique ; prendre et défendre des positions sur la régulation de l’IA existante et l’orientation des prochaines générations." },
+    { t: "Étude des responsabilités sociales personnelles des citoyens", d: "Discussions de groupe sur les droits et obligations des citoyens d’une société d’IA, en tenant compte du contexte mondial et local." },
+    { t: "Études de cas sur l’accomplissement personnel et l’apprentissage tout au long de la vie", d: "Adoption de l’IA dans le travail, la vie et les pratiques sociales ; implications pour les objectifs personnels et la carrière." }],
+  env: ["Paramètres et ressources hors connexion (feuilles de travail, rapports ou vidéos sur l’emploi et l’évolution de carrière, études de cas imprimées)", "Systèmes d’IA en ligne ou outils locaux pour tests expérimentaux et analytiques : assistants personnels, chatbots, systèmes de tutorat intelligents sur smartphones"] },
+
+{ id: "4.3.2", aspect: "ethique", level: 3, name: "Éthique dès la conception", alt: "Ethics by design", pages: "p. 47-48",
+  quick: "L’élève sait évaluer, auditer et critiquer un outil d’IA selon des critères éthiques, et proposer d’adapter les règles.",
+  attendu: [
+    "Adopter une approche éthique pour la conception, l’évaluation et l’utilisation des outils d’IA, et pour l’examen et l’adaptation des réglementations.",
+    "Comprendre que l’évaluation de l’intention de conception doit commencer dès la conceptualisation et couvrir tout le cycle de vie.",
+    "Appliquer des paramètres pour évaluer la conformité d’un outil aux règles éthiques et utiliser une matrice éthique qui prend en compte toutes les parties prenantes."],
+  cg: [
+    { c: "CG4.3.2.1", t: "Sensibiliser à l’« éthique dès la conception » et la faire comprendre.", d: "Apprentissage à base de conflits pour appliquer un ensemble complet de principes éthiques tout au long du cycle de conception ; évaluer la pertinence éthique d’outils en cours de conceptualisation : lutte contre les préjugés dans la collecte de données, méthodes sans discrimination, « garde-fous » centrés sur l’humain, tests et audits inclusifs." },
+    { c: "CG4.3.2.2", t: "Développer une attitude critique à l’égard des principes d’éthique dès la conception qui sous-tendent les systèmes et algorithmes d’IA existants.", d: "Évaluer de façon holistique l’« éthique dès la conception » de systèmes précis ; proposer des recommandations aux créateurs pour remédier aux violations identifiées et atténuer les préjudices." },
+    { c: "CG4.3.2.3", t: "Cultiver les responsabilités sociales pour défendre l’« éthique dès la conception » dans les réglementations sur l’IA.", d: "Évaluer comment des réglementations s’alignent sur cette approche et si leurs mesures suffisent ; recommander des modifications des réglementations locales ou rédiger des propositions." }],
+  methodes: [
+    { t: "Simuler le devoir de diligence d’un « responsable de l’éthique »", d: "Jouer ce rôle dans une équipe de développement : liste de critères éthiques d’audit, procédures de diligence raisonnable." },
+    { t: "Simuler l’usage d’un « label éthique » pour auditer des outils d’IA", d: "Audit fictif ; label analogue à l’étiquette nutritionnelle des aliments ; vérifier l’intention des concepteurs au-delà de leurs déclarations publiques ; rédiger un rapport d’audit." },
+    { t: "Simuler l’usage d’une matrice éthique pour examiner les réglementations", d: "Colonnes : principes éthiques ; lignes : parties prenantes (créateurs, régulateurs, institutions, utilisateurs) ; analyser les articles d’une réglementation et recommander des adaptations." }],
+  env: ["Feuilles de travail, tableaux papier, exemples imprimés de contrôles et de rapports de diligence, labels éthiques, matrices, politiques de confidentialité", "Outils d’IA disponibles localement ; systèmes d’IA en ligne pour l’analyse éthique", "Sites web partageant des réglementations sur l’IA, des procès ou des affaires judiciaires"] },
+
+{ id: "4.3.3", aspect: "technique", level: 3, name: "Création d’outils d’IA", alt: "", pages: "p. 49-50",
+  quick: "L’élève personnalise ou crée un petit outil d’IA pour une tâche réelle, le teste et l’améliore, avec une perspective humaine et éthique.",
+  attendu: [
+    "Approfondir et appliquer ses connaissances sur les données et les algorithmes pour personnaliser des outils d’IA existants et créer des outils pour des tâches précises.",
+    "Intégrer les principes d’une perspective centrée sur l’humain et ses considérations éthiques dans l’évaluation des ressources d’IA et le test de ses propres outils.",
+    "Développer les compétences sociales et émotionnelles (adaptabilité, communication, travail d’équipe) nécessaires pour créer avec l’IA."],
+  cg: [
+    { c: "CG4.3.3.1", t: "Mettre au défi et activer des compétences avancées pour développer des outils d’IA basés sur des tâches.", d: "Analyse critique de la pertinence d’outils existants pour des tâches précises, évaluation des besoins de collecte et de traitement des données, choix entre programmation schématisée (low code) ou algorithmes d’IA et langage de programmation." },
+    { c: "CG4.3.3.2", t: "Renforcer la créativité des apprenants en appliquant les connaissances d’IA.", d: "Tâches de personnalisation d’outils d’IA pour résoudre des tâches authentiques ; utiliser des plateformes ou boîtes à outils de développement ; explorer et tester des idées créatives." },
+    { c: "CG4.3.3.3", t: "Donner aux apprenants les compétences nécessaires pour tester et optimiser les outils d’IA qu’ils ont eux-mêmes créés.", d: "Personnaliser les méthodes d’évaluation pour tester la robustesse et la facilité d’usage ; organiser des évaluations par les pairs et partager le retour d’information ; collaborer comme cocréateurs." }],
+  methodes: [
+    { t: "Améliorer jeux de données et codes pour créer un outil d’IA", d: "Modifier ou créer un jeu de données pour des contextes réels (consommation d’énergie de l’école, prévisions météo, suivi d’une épidémie) ; outils de collecte automatique de données." },
+    { t: "Laboratoire de test des performances des applications d’IA", d: "Tester performance et robustesse avec des mesures (exactitude, précision, score F-1, matrices de confusion, courbes ROC) ; simuler le retour d’utilisateurs sur le respect de l’éthique." },
+    { t: "Comparer création par code et par plateformes de programmation schématisée", d: "Discuter des différences en termes d’agentivité humaine, d’inclusion de données locales, de diversité culturelle, d’évolutivité et de réutilisation." }],
+  env: ["Jeux de données en ligne, outils et bibliothèques gratuits ou libres accessibles localement", "Outils d’analyse de données gratuits ou open source accessibles localement", "Ressources de calcul en nuage accessibles localement, ou partagées par des institutions ou industries dignes de confiance"] },
+
+{ id: "4.3.4", aspect: "conception", level: 3, name: "Itérations et boucles de rétroaction", alt: "Itération et retour d’information", pages: "p. 50-52",
+  quick: "L’élève teste un système d’IA, en critique l’impact humain et éthique, et décide de l’optimiser, de le reconfigurer ou de l’arrêter.",
+  attendu: [
+    "Améliorer et appliquer ses connaissances interdisciplinaires et sa maîtrise de méthodes pratiques pour évaluer l’adéquation humaniste et la robustesse méthodologique d’un modèle d’IA, et son impact sur les utilisateurs, les sociétés et l’environnement.",
+    "Améliorer la qualité des jeux de données, reconfigurer les algorithmes et les architectures selon les résultats des tests et de la rétroaction.",
+    "Simuler la décision d’arrêter un système d’IA et d’atténuer son impact négatif ; cultiver son identité de cocréateur au sein de la communauté de l’IA."],
+  cg: [
+    { c: "CG4.3.4.1", t: "Développer les compétences pour faire la critique des systèmes d’IA.", d: "Tester de manière critique la robustesse et critiquer la pertinence éthique d’un système : renforce-t-il ou affaiblit-il les capacités, l’action et la conscience humaines ? explicabilité, protection des données, performances, réactions des utilisateurs, impact sociétal et environnemental." },
+    { c: "CG4.3.4.2", t: "Soutenir l’acquisition de compétences techniques et de responsabilités sociales dans l’optimisation, la reconfiguration ou l’arrêt d’un système d’IA.", d: "Trois scénarios : optimisation ; reconfiguration (réexamen de la définition du problème) ; arrêt, lorsqu’il est prouvé que le système viole les droits humains ou nuit à des groupes vulnérables, avec stratégies de remédiation." },
+    { c: "CG4.3.4.3", t: "Favoriser l’identité des apprenants en tant que cocréateurs à l’ère de l’IA.", d: "Assumer ses responsabilités de cocréateur et de « pilote » de la conception de la prochaine génération d’IA ; analyser de façon critique les impacts à long terme sur les relations sociales et les comportements individuels ; discuter de l’adaptation des réglementations et politiques." }],
+  methodes: [
+    { t: "Simuler le test de performance d’un système d’IA", d: "Mesures pour déterminer si un modèle renforce ou affaiblit les capacités, l’agentivité et la conscience humaines, et son degré d’explicabilité ; visualisations ; retours d’utilisateurs finaux (par simulation)." },
+    { t: "Simuler la décision professionnelle d’ingénieurs en IA sur l’itération d’un modèle", d: "Jouer le rôle d’ingénieurs et choisir entre optimisation, reconfiguration ou arrêt, en tenant compte de la responsabilité sociale de l’entreprise." },
+    { t: "S’engager auprès de communautés de créateurs d’IA", d: "Rejoindre des communautés locales ou en ligne de cocréateurs ; participer à des discussions ou au développement collaboratif ; partager des jeux de données en libre accès." }],
+  env: ["Outils d’IA en ligne accessibles localement, gratuits ou libres (analyse de données, bibliothèques)", "Ressources de calcul en nuage hébergées ou accessibles localement", "Outils téléchargés et adaptés pour l’audit éthique et le test de performance", "Accès aux réglementations applicables et aux cadres de gouvernance de l’IA", "Plateformes de collaboration en ligne (GitHub, arXiv, forums de discussion)"] }
+];
+
+/* ---------- Parcours : pratiques d’élèves → compétences ----------
+   Chaque cause associe, pour chaque niveau, une liste de codes CG : le premier est la compétence principale.
+   Les formulations de pratiques et les questions métacognitives sont des propositions (hors référentiel UNESCO). */
+const FAMILIES = [
+ { id: "f1", t: "Ils prennent la réponse de l’IA pour argent comptant", s: "Ils recopient sans vérifier, ne doutent pas, ne comparent pas." },
+ { id: "f2", t: "Ils laissent l’IA penser ou rédiger à leur place", s: "Devoirs, résumés ou dissertations produits par l’IA, réflexion déléguée." },
+ { id: "f3", t: "Ils n’affichent pas leur usage de l’IA ou ne protègent pas ce qu’ils lui donnent", s: "Pas de mention de l’IA, données personnelles ou contenus protégés envoyés aux outils." },
+ { id: "f4", t: "Ils comprennent mal comment fonctionne l’IA", s: "Idées fausses : « elle sait », « c’est comme Google », « c’est neutre »." },
+ { id: "f5", t: "Ils utilisent l’IA par réflexe, sans se demander si c’est pertinent", s: "Usage systématique, sans regard sur le besoin ni sur les conséquences." },
+ { id: "f6", t: "Ils ne voient pas les enjeux éthiques et sociaux de l’IA", s: "Biais, désinformation, hypertrucages, impact sur la société." },
+ { id: "f7", t: "Ils veulent aller plus loin : tester, analyser ou construire", s: "Élèves moteurs, projets, curiosité technique." }
+];
+const CAUSES = [
+ { id: "c1a", f: "f1", t: "Ils pensent que l’IA « sait » ou « comprend » comme une personne",
+   map: { 1: ["CG4.1.3.1", "CG4.1.3.2"], 2: ["CG4.2.1.2", "CG4.2.3.3"], 3: ["CG4.3.4.1", "CG4.3.3.1"] },
+   meta: "Qu’est-ce que je croyais que l’IA faisait quand je lui posais la question ? Qu’ai-je découvert sur la façon dont elle produit sa réponse ?" },
+ { id: "c1b", f: "f1", t: "Ils savent qu’elle peut se tromper, mais ne contrôlent pas ou s’en remettent à elle",
+   map: { 1: ["CG4.1.1.2", "CG4.1.1.3"], 2: ["CG4.2.1.2", "CG4.2.1.3"], 3: ["CG4.3.4.1"] },
+   meta: "Qu’ai-je vérifié dans la réponse de l’IA, et comment ? Qu’est-ce que j’ai corrigé ou refusé, et pourquoi ?" },
+ { id: "c2a", f: "f2", t: "Ils ne mesurent pas ce qu’ils perdent en déléguant (réflexion, apprentissage)",
+   map: { 1: ["CG4.1.1.3", "CG4.1.1.1"], 2: ["CG4.2.1.3", "CG4.2.1.2"], 3: ["CG4.3.1.3", "CG4.3.1.2"] },
+   meta: "Qu’est-ce que j’ai appris en faisant ce travail moi-même, que je n’aurais pas appris en le déléguant ?" },
+ { id: "c2b", f: "f2", t: "Ils ne savent pas où passe la limite entre aide légitime et substitution",
+   map: { 1: ["CG4.1.1.3", "CG4.1.2.2"], 2: ["CG4.2.2.1", "CG4.2.1.3"], 3: ["CG4.3.1.2"] },
+   meta: "Dans ce travail, qu’est-ce qui vient de moi et qu’est-ce qui vient de l’IA ? Où ai-je placé la limite, et pourquoi ?" },
+ { id: "c3a", f: "f3", t: "Ils ne disent pas où ils ont utilisé l’IA, ou ne l’identifient pas dans leurs travaux",
+   map: { 1: ["CG4.1.2.2"], 2: ["CG4.2.2.1", "CG4.2.2.2"], 3: ["CG4.3.1.2"] },
+   meta: "Ai-je indiqué clairement à quel endroit et pour quoi j’ai utilisé l’IA ? Un lecteur pourrait-il s’y retrouver ?" },
+ { id: "c3b", f: "f3", t: "Ils donnent à l’IA des données personnelles ou des contenus protégés (les leurs, ceux d’autres personnes)",
+   map: { 1: ["CG4.1.2.3", "CG4.1.1.1"], 2: ["CG4.2.2.2", "CG4.2.2.3"], 3: ["CG4.3.2.2"] },
+   meta: "Qu’est-ce que j’ai envoyé à l’outil ? Ai-je le droit de le partager, et que deviendra cette information ?" },
+ { id: "c3c", f: "f3", t: "Ils ignorent le droit d’auteur et la propriété des contenus générés",
+   map: { 1: ["CG4.1.1.1", "CG4.1.2.2"], 2: ["CG4.2.2.2", "CG4.2.2.1"], 3: ["CG4.3.2.3"] },
+   meta: "À qui appartient ce que j’ai produit avec l’IA ? Quelles sources ou quels auteurs ai-je utilisés sans le dire ?" },
+ { id: "c4a", f: "f4", t: "Ils la confondent avec un moteur de recherche ou une encyclopédie",
+   map: { 1: ["CG4.1.3.1"], 2: ["CG4.2.3.2", "CG4.2.3.3"], 3: ["CG4.3.3.1"] },
+   meta: "Qu’est-ce qui distingue ce que fait l’IA de ce que fait un moteur de recherche ? Que me dit chacun, et que ne me dit-il pas ?" },
+ { id: "c4b", f: "f4", t: "Ils ignorent d’où viennent ses réponses (données, entraînement, biais)",
+   map: { 1: ["CG4.1.3.2"], 2: ["CG4.2.3.1"], 3: ["CG4.3.4.1"] },
+   meta: "Sur quelles données cette IA a-t-elle pu apprendre ? Qu’est-ce que cela change dans la confiance que je lui accorde ?" },
+ { id: "c5a", f: "f5", t: "Ils ne se demandent pas si l’IA est la bonne solution pour la tâche",
+   map: { 1: ["CG4.1.4.1"], 2: ["CG4.2.1.3", "CG4.2.2.2"], 3: ["CG4.3.3.1", "CG4.3.4.1"] },
+   meta: "Pourquoi ai-je choisi d’utiliser l’IA ici ? Aurais-je obtenu le même résultat autrement, avec quel avantage ou quel risque ?" },
+ { id: "c5b", f: "f5", t: "Ils ne considèrent pas les conséquences de leur usage (environnement, autres personnes)",
+   map: { 1: ["CG4.1.2.3", "CG4.1.4.1"], 2: ["CG4.2.2.2", "CG4.2.1.3"], 3: ["CG4.3.1.1", "CG4.3.1.2"] },
+   meta: "Qui ou quoi est touché par mon usage de l’IA, au-delà de moi ? Que ferais-je différemment ?" },
+ { id: "c6a", f: "f6", t: "Ils ne repèrent pas les biais ni les discriminations",
+   map: { 1: ["CG4.1.2.2", "CG4.1.2.1"], 2: ["CG4.2.3.1", "CG4.2.2.3"], 3: ["CG4.3.1.1", "CG4.3.2.2"] },
+   meta: "Qui est bien représenté dans cette réponse, et qui ne l’est pas ? Qu’est-ce qui m’a fait remarquer (ou ne pas remarquer) le biais ?" },
+ { id: "c6b", f: "f6", t: "Ils ne perçoivent pas les risques de désinformation, d’hypertrucages ou de contenus nuisibles",
+   map: { 1: ["CG4.1.2.1"], 2: ["CG4.2.2.3", "CG4.2.2.2"], 3: ["CG4.3.1.2", "CG4.3.2.2"] },
+   meta: "Comment aurais-je pu savoir que ce contenu était faux ou fabriqué ? Qu’aurais-je dû vérifier avant de le partager ?" },
+ { id: "c6c", f: "f6", t: "Ils ne se sentent pas concernés par l’impact de l’IA sur la société et sur leur avenir",
+   map: { 1: ["CG4.1.2.3", "CG4.1.1.3"], 2: ["CG4.2.1.2"], 3: ["CG4.3.1.1", "CG4.3.1.3"] },
+   meta: "En quoi l’IA touche-t-elle déjà ma vie et celle de mon entourage ? Quelle position est-ce que je prends, et pourquoi ?" },
+ { id: "c7a", f: "f7", t: "Ils souhaitent construire un petit outil ou un projet avec l’IA",
+   map: { 1: ["CG4.1.4.2"], 2: ["CG4.2.3.2", "CG4.2.4.2"], 3: ["CG4.3.3.1", "CG4.3.3.2"] },
+   meta: "Quel problème précis veux-je résoudre, et pour qui ? Comment saurai-je que mon outil fonctionne et qu’il ne nuit pas ?" },
+ { id: "c7b", f: "f7", t: "Ils souhaitent évaluer ou auditer un outil d’IA (fiabilité, éthique)",
+   map: { 1: ["CG4.1.4.1", "CG4.1.2.2"], 2: ["CG4.2.2.3", "CG4.2.3.3"], 3: ["CG4.3.2.2", "CG4.3.4.1"] },
+   meta: "Selon quels critères est-ce que j’évalue cet outil ? Qu’est-ce que mon évaluation m’apprend sur ses concepteurs et sur mes propres critères ?" }
+];
+const LEVEL_Q = [
+ { l: 1, t: "Ils découvrent le sujet", s: "Il n’a jamais été travaillé en classe, ou seulement en passant." },
+ { l: 2, t: "Ils connaissent les règles ou les idées, mais ne les appliquent pas", s: "L’écart se situe entre ce qu’ils savent et ce qu’ils font." },
+ { l: 3, t: "Ils appliquent déjà bien", s: "On peut leur demander d’analyser, d’auditer, de concevoir ou de défendre une position." },
+ { l: 0, t: "Je ne sais pas", s: "Montrez-moi les trois niveaux pour cette pratique." }
+];
+
+</script>
+<script>
+(function(){
+"use strict";
+var app = document.getElementById("app");
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+function norm(s){return String(s).normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();}
+var byId = {}, cgIdx = {};
+BLOCKS.forEach(function(b){ byId[b.id]=b; b.cg.forEach(function(c){ cgIdx[c.c]={b:b,c:c}; }); });
+function slot(a,l){ return BLOCKS.filter(function(b){return b.aspect===a && b.level===l;})[0]; }
+var ASP_ORDER = ["humain","ethique","technique","conception"];
+function aChip(b){ var a=ASPECTS[b.aspect]; return '<span class="chip a-'+b.aspect+'"><span aria-hidden="true">'+a.sym+'</span>'+esc(a.n)+'</span>'; }
+function lChip(l){ return '<span class="chip lvl">Niveau '+l+' · '+LEVELS[l].n+'</span>'; }
+function famOf(id){ return FAMILIES.filter(function(f){return f.id===id;})[0]; }
+function causeOf(id){ return CAUSES.filter(function(c){return c.id===id;})[0]; }
+
+/* ---------- Cartographie ---------- */
+var query = "";
+function matrixHTML(){
+  var h = '<div class="matrix" role="group" aria-label="Matrice des douze blocs de compétences : quatre aspects en lignes, trois niveaux en colonnes"><div class="mh" aria-hidden="true"></div>';
+  [1,2,3].forEach(function(l){ h += '<div class="mh"><strong><a href="#/carte/niveau/'+l+'">'+LEVELS[l].n+'</a></strong>'+esc(LEVELS[l].d)+'</div>'; });
+  ASP_ORDER.forEach(function(k){
+    var a = ASPECTS[k];
+    h += '<div class="ma a-'+k+'"><strong><span aria-hidden="true">'+a.sym+'</span> '+esc(a.n)+'</strong><span class="d">'+esc(a.d)+'</span></div>';
+    [1,2,3].forEach(function(l){
+      var b = slot(k,l);
+      h += '<a class="mc a-'+k+'" href="#/bloc/'+b.id+'"><span class="lv">Niveau '+l+' · '+LEVELS[l].n+'</span><b>'+esc(b.name)+'</b><span class="q">'+esc(b.quick)+'</span><span class="meta">'+b.cg.length+' compétences · '+esc(b.pages)+'</span></a>';
+    });
+  });
+  return h + '</div>';
+}
+function levelHTML(l){
+  var h = '<div class="note" style="margin-bottom:14px"><strong>Niveau '+l+' · '+LEVELS[l].n+'.</strong> '+esc(LEVELS[l].note)+'</div><div class="blocklist">';
+  ASP_ORDER.forEach(function(k){
+    var b = slot(k,l);
+    h += '<article class="card bcard a-'+k+'"><header>'+aChip(b)+'<span class="muted" style="font-size:.85rem">'+esc(b.id)+' · '+esc(b.pages)+'</span></header>'
+      + '<h3><a href="#/bloc/'+b.id+'" style="color:inherit">'+esc(b.name)+'</a></h3>'
+      + '<p style="margin:.2rem 0 .4rem" class="muted">'+esc(b.quick)+'</p>'
+      + '<ul class="cgl">'+b.cg.map(function(c){return '<li><span class="code">'+c.c+'</span><span>'+esc(c.t)+'</span></li>';}).join('')+'</ul>'
+      + '<details><summary>Méthodes recommandées et environnements</summary><div class="in"><div class="mlist">'
+      + b.methodes.map(function(m){return '<div class="it"><b>'+esc(m.t)+'</b><p>'+esc(m.d)+'</p></div>';}).join('')
+      + '</div><p style="margin:.8rem 0 .2rem"><strong>Environnements d’apprentissage</strong></p><ul>'+b.env.map(function(e){return '<li>'+esc(e)+'</li>';}).join('')+'</ul></div></details>'
+      + '<a class="btn small" href="#/bloc/'+b.id+'">Ouvrir la fiche</a></article>';
+  });
+  return h + '</div>';
+}
+function searchHTML(q){
+  var words = norm(q).split(/\s+/).filter(Boolean);
+  if(!words.length) return "";
+  var res = [];
+  BLOCKS.forEach(function(b){
+    var parts = {
+      "intitulé": b.name+" "+b.alt+" "+b.quick,
+      "ce que l’élève doit pouvoir faire": b.attendu.join(" "),
+      "compétences": b.cg.map(function(c){return c.c+" "+c.t+" "+c.d;}).join(" "),
+      "méthodes": b.methodes.map(function(m){return m.t+" "+m.d;}).join(" "),
+      "environnements": b.env.join(" ")
+    };
+    var all = norm(Object.keys(parts).map(function(k){return parts[k];}).join(" "));
+    var ok = words.every(function(w){return all.indexOf(w)>=0;});
+    if(!ok) return;
+    var where = Object.keys(parts).filter(function(k){ var n=norm(parts[k]); return words.some(function(w){return n.indexOf(w)>=0;}); });
+    var cgs = b.cg.filter(function(c){ var n=norm(c.c+" "+c.t+" "+c.d); return words.some(function(w){return n.indexOf(w)>=0;}); });
+    res.push({b:b, where:where, cgs:cgs});
+  });
+  if(!res.length) return '<p class="muted">Aucun bloc ne contient tous ces mots. Essayez un seul mot (« données », « biais », « responsabilité »…).</p>';
+  return '<p class="muted">'+res.length+' bloc'+(res.length>1?'s':'')+' trouvé'+(res.length>1?'s':'')+'.</p><div class="blocklist">'+res.map(function(r){
+    var b=r.b;
+    return '<article class="card bcard a-'+b.aspect+'"><header>'+aChip(b)+lChip(b.level)+'</header><h3><a href="#/bloc/'+b.id+'" style="color:inherit">'+esc(b.name)+'</a></h3>'
+      +'<p class="muted" style="margin:.2rem 0">Trouvé dans : '+esc(r.where.join(", "))+'.</p>'
+      +(r.cgs.length?'<ul class="cgl">'+r.cgs.map(function(c){return '<li><span class="code">'+c.c+'</span><span>'+esc(c.t)+'</span></li>';}).join('')+'</ul>':'')
+      +'<a class="btn small" href="#/bloc/'+b.id+'">Ouvrir la fiche</a></article>';
+  }).join('')+'</div>';
+}
+function viewCarte(sub){
+  var cur = (sub==="1"||sub==="2"||sub==="3") ? sub : "m";
+  var tabs = '<nav class="tabs" aria-label="Vues de la cartographie"><a href="#/carte"'+(cur==="m"?' aria-current="page"':'')+'>Matrice (tableau 1)</a>'
+    + [1,2,3].map(function(l){return '<a href="#/carte/niveau/'+l+'"'+(cur===String(l)?' aria-current="page"':'')+'>Niveau '+l+' · '+LEVELS[l].n+' (tableau '+(l+1)+')</a>';}).join('')+'</nav>';
+  var body = cur==="m" ? matrixHTML() : levelHTML(+cur);
+  var intro = cur==="m"
+    ? '<h1 id="h" tabindex="-1">Les 12 blocs de compétences en IA des apprenants</h1><p class="lead">Quatre aspects (lignes) et trois niveaux de progression (colonnes). Chaque case ouvre une fiche qui reprend les quatre colonnes des tableaux du référentiel : ce que l’élève doit pouvoir faire, les objectifs du programme, les méthodes recommandées et les environnements d’apprentissage.</p>'
+    : '<h1 id="h" tabindex="-1">Niveau '+cur+' · '+LEVELS[+cur].n+'</h1><p class="lead">'+esc(LEVELS[+cur].d)+'</p>';
+  app.innerHTML = intro
+    + '<div class="note" style="margin-bottom:16px">Vous cherchez la compétence qui répond à une pratique précise de vos élèves ? <a href="#/parcours"><strong>Lancez le parcours guidé</strong></a>.</div>'
+    + tabs
+    + '<div class="search"><label for="q">Chercher dans le référentiel</label><input id="q" type="search" placeholder="par exemple : données personnelles, biais, responsabilité" value="'+esc(query)+'" autocomplete="off"></div>'
+    + '<div id="results" aria-live="polite"></div><div id="cbody">'+body+'</div>';
+  var q = document.getElementById("q"), r = document.getElementById("results"), b = document.getElementById("cbody");
+  function upd(){ query=q.value; var h = searchHTML(query); r.innerHTML=h; b.hidden = !!h; }
+  q.addEventListener("input", upd); upd();
+}
+
+/* ---------- Fiche d’un bloc ---------- */
+function viewBloc(id){
+  var b = byId[id];
+  if(!b){ app.innerHTML='<h1 id="h" tabindex="-1">Bloc introuvable</h1><p><a href="#/carte">Retour à la cartographie</a></p>'; return; }
+  var same = BLOCKS.filter(function(x){return x.level===b.level;});
+  var i = same.indexOf(b), prev = same[i-1], next = same[i+1];
+  var related = CAUSES.filter(function(c){ return (c.map[b.level]||[]).some(function(code){return cgIdx[code] && cgIdx[code].b===b;}); });
+  var h = '<p class="crumbs"><a href="#/carte">Cartographie</a> › <a href="#/carte/niveau/'+b.level+'">Niveau '+b.level+' · '+LEVELS[b.level].n+'</a> › '+esc(b.name)+'</p>'
+   + '<div class="fhead a-'+b.aspect+'"><div class="row">'+aChip(b)+lChip(b.level)+'<span class="muted" style="font-size:.85rem">Bloc '+esc(b.id)+' · '+esc(b.pages)+'</span></div>'
+   + '<h1 id="h" tabindex="-1">'+esc(b.name)+'</h1>'
+   + (b.alt?'<div class="muted" style="font-size:.9rem">Intitulé dans le chapitre 4 : « '+esc(b.alt)+' »</div>':'')
+   + '<p class="quick"><small>Lecture rapide (reformulation)</small>'+esc(b.quick)+'</p></div>';
+  h += '<h2 style="font-size:1rem" class="muted">Même aspect, trois niveaux</h2><div class="prog a-'+b.aspect+'">'+[1,2,3].map(function(l){var s=slot(b.aspect,l);return '<a href="#/bloc/'+s.id+'"'+(s===b?' aria-current="true"':'')+'><small>Niveau '+l+' · '+LEVELS[l].n+'</small><b>'+esc(s.name)+'</b></a>';}).join('')+'</div>';
+  h += '<div class="row" style="justify-content:flex-end;margin-bottom:4px"><button class="btn ghost small" data-act="toggle">Tout replier / déplier</button></div>';
+  h += '<details open class="a-'+b.aspect+'"><summary>Colonne 1 · Compétences des apprenants : ce que l’élève doit pouvoir faire</summary><div class="in"><ul>'+b.attendu.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul></div></details>';
+  h += '<details open class="a-'+b.aspect+'"><summary>Colonne 2 · Objectifs du programme : ce que l’enseignement devrait viser ('+b.cg.length+' compétences)</summary><div class="in"><div class="cgbig">'
+     + b.cg.map(function(c){return '<div class="it"><span class="code">'+c.c+'</span><b style="margin-top:4px">'+esc(c.t)+'</b><p>'+esc(c.d)+'</p></div>';}).join('')+'</div></div></details>';
+  h += '<details open class="a-'+b.aspect+'"><summary>Colonne 3 · Méthodes pédagogiques recommandées</summary><div class="in"><div class="mlist">'
+     + b.methodes.map(function(m){return '<div class="it"><b>'+esc(m.t)+'</b><p>'+esc(m.d)+'</p></div>';}).join('')+'</div></div></details>';
+  h += '<details open class="a-'+b.aspect+'"><summary>Colonne 4 · Environnements d’apprentissage</summary><div class="in"><ul>'+b.env.map(function(e){return '<li>'+esc(e)+'</li>';}).join('')+'</ul></div></details>';
+  if(related.length){
+    h += '<details open><summary>Pratiques d’élèves que ce bloc permet de travailler</summary><div class="in"><p class="muted" style="margin-top:0">Liens vers le parcours guidé (association proposée par cet outil, hors référentiel).</p><div class="also">'
+      + related.map(function(c){return '<a href="#/parcours/'+c.f+'/'+c.id+'/'+b.level+'">'+esc(c.t)+'<br><small>'+esc(famOf(c.f).t)+'</small></a>';}).join('')+'</div></div></details>';
+  }
+  h += '<div class="pn">'+(prev?'<a class="btn ghost small" href="#/bloc/'+prev.id+'">← '+esc(prev.name)+'</a>':'<span></span>')+(next?'<a class="btn ghost small" href="#/bloc/'+next.id+'">'+esc(next.name)+' →</a>':'<span></span>')+'</div>';
+  app.innerHTML = h;
+}
+
+/* ---------- Parcours guidé ---------- */
+function stepsHTML(n){
+  var names = ["Pratique observée","Ce qui se passe","Niveau des élèves","Compétence à travailler"];
+  return '<ol class="steps" aria-label="Étapes du parcours">'+names.map(function(t,i){return '<li'+(i+1===n?' aria-current="step"':(i+1<n?' class="done"':''))+'>'+(i+1)+'. '+t+'</li>';}).join('')+'</ol>';
+}
+function levelWord(l){ return LEVELS[l].n; }
+function ficheText(cause, level, main, others){
+  var fam = famOf(cause.f), b = main.b, c = main.c;
+  var t = "FICHE ACTION · extrait généré par le parcours guidé\n\n"
+   + "Pratique observée chez les élèves :\n  " + fam.t + " → " + cause.t + "\n\n"
+   + "Niveau visé : " + level + " · " + levelWord(level) + "\n\n"
+   + "Compétence UNESCO ciblée :\n  " + b.id + " " + b.name + " (" + ASPECTS[b.aspect].n + ")\n  " + c.c + " : " + c.t + "\n";
+  if(others.length){ t += "Compétences voisines à considérer :\n" + others.map(function(o){return "  - " + o.c.c + " : " + o.c.t;}).join("\n") + "\n"; }
+  t += "\nActivité envisagée (pistes du référentiel, à adapter) :\n" + b.methodes.map(function(m){return "  ☐ " + m.t;}).join("\n") + "\n  Mon activité : …\n\n"
+   + "Littératie de l’IA, ce que l’élève doit comprendre :\n  …\n\n"
+   + "Métacognition, question à poser à l’élève (proposition) :\n  " + cause.meta + "\n\n"
+   + "Éthique, point d’attention :\n  …\n\n"
+   + "Trace et évaluation (comment saurai-je que la pratique a changé ?) :\n  …\n";
+  return t;
+}
+function viewParcours(parts){
+  var fId = parts[0], cId = parts[1], lv = parts[2];
+  var fam = fId && famOf(fId), cause = cId && causeOf(cId);
+  if(fId && !fam){ go("#/parcours"); return; }
+  if(cId && (!cause || cause.f!==fId)){ go("#/parcours/"+fId); return; }
+  var h = "";
+  if(!fam){
+    h = '<h1 id="h" tabindex="-1">Parcours guidé : de la pratique de l’élève à la compétence à travailler</h1>'
+      + '<p class="lead">Vous avez repéré une pratique à corriger chez vos élèves. Trois questions vous conduisent à la compétence du référentiel UNESCO qui permet de la travailler, avec des pistes d’activités et un extrait prêt pour votre fiche action.</p>'
+      + stepsHTML(1) + '<h2>Quelle pratique observez-vous chez vos élèves ?</h2><p class="muted">Choisissez la situation la plus proche.</p><div class="choices">'
+      + FAMILIES.map(function(f){return '<a class="choice" href="#/parcours/'+f.id+'"><b>'+esc(f.t)+'</b><span>'+esc(f.s)+'</span></a>';}).join('')+'</div>';
+  } else if(!cause){
+    h = '<p class="crumbs"><a href="#/parcours">Parcours guidé</a> › '+esc(fam.t)+'</p><h1 id="h" tabindex="-1">Qu’est-ce qui se passe, précisément ?</h1>'
+      + '<p class="lead">Pratique : <strong>'+esc(fam.t)+'</strong>. Quelle description colle le mieux à ce que vous voyez ?</p>' + stepsHTML(2)
+      + '<div class="choices">'+CAUSES.filter(function(c){return c.f===fam.id;}).map(function(c){return '<a class="choice" href="#/parcours/'+fam.id+'/'+c.id+'"><b>'+esc(c.t)+'</b></a>';}).join('')+'</div>'
+      + '<p style="margin-top:16px"><a class="btn ghost small" href="#/parcours">← Changer de pratique</a></p>';
+  } else if(lv===undefined || !/^[0-3]$/.test(lv)){
+    h = '<p class="crumbs"><a href="#/parcours">Parcours guidé</a> › <a href="#/parcours/'+fam.id+'">'+esc(fam.t)+'</a> › '+esc(cause.t)+'</p><h1 id="h" tabindex="-1">Où en sont vos élèves sur ce point ?</h1>'
+      + '<p class="lead">Le référentiel progresse du niveau 1 « Comprendre » (pour tous) au niveau 3 « Créer ». En cas de doute, commencez par Comprendre.</p>' + stepsHTML(3)
+      + '<div class="choices">'+LEVEL_Q.map(function(q){return '<a class="choice" href="#/parcours/'+fam.id+'/'+cause.id+'/'+q.l+'"><b>'+esc(q.t)+'</b><span>'+esc(q.s)+(q.l?'  Niveau '+q.l+' · '+LEVELS[q.l].n+'.':'')+'</span></a>';}).join('')+'</div>'
+      + '<p style="margin-top:16px"><a class="btn ghost small" href="#/parcours/'+fam.id+'">← Préciser autrement</a></p>';
+  } else {
+    var level = +lv, unknown = (level===0); if(unknown) level = 1;
+    var codes = cause.map[level], main = cgIdx[codes[0]], others = codes.slice(1).map(function(k){return cgIdx[k];});
+    var b = main.b;
+    h = '<p class="crumbs"><a href="#/parcours">Parcours guidé</a> › <a href="#/parcours/'+fam.id+'">'+esc(fam.t)+'</a> › <a href="#/parcours/'+fam.id+'/'+cause.id+'">'+esc(cause.t)+'</a></p>'
+      + '<h1 id="h" tabindex="-1">Compétence à travailler</h1>' + stepsHTML(4)
+      + '<div class="recap"><span class="chip">Pratique : '+esc(cause.t)+'</span><span class="chip">'+(unknown?'Niveau non précisé : on part de Comprendre':'Niveau '+level+' · '+levelWord(level))+'</span></div>';
+    h += '<section class="result a-'+b.aspect+'" aria-labelledby="rt"><div class="row">'+aChip(b)+lChip(level)+'<span class="code">'+main.c.c+'</span></div>'
+      + '<h2 id="rt">'+esc(b.name)+'</h2><p class="big">'+esc(main.c.t)+'</p><p style="margin:.2rem 0 .6rem">'+esc(main.c.d)+'</p>'
+      + '<a class="btn small" href="#/bloc/'+b.id+'">Ouvrir la fiche du bloc '+b.id+'</a></section>';
+    if(others.length){
+      h += '<h2 style="font-size:1.05rem">À regarder aussi</h2><div class="also">'+others.map(function(o){return '<a href="#/bloc/'+o.b.id+'"><span class="code">'+o.c.c+'</span> <strong>'+esc(o.b.name)+'</strong> (niveau '+o.b.level+')<br><small>'+esc(o.c.t)+'</small></a>';}).join('')+'</div>';
+    }
+    h += '<details open><summary>Pistes d’activités du référentiel pour ce bloc</summary><div class="in"><div class="mlist a-'+b.aspect+'">'+b.methodes.map(function(m){return '<div class="it"><b>'+esc(m.t)+'</b><p>'+esc(m.d)+'</p></div>';}).join('')+'</div></div></details>';
+    h += '<h2 style="font-size:1.05rem;margin-top:18px">Cette pratique, niveau après niveau</h2><div class="three">'+[1,2,3].map(function(l){
+      var m = cgIdx[cause.map[l][0]];
+      return '<div class="card a-'+m.b.aspect+(l===level&&!unknown?' cur':'')+'"><small class="muted" style="font-weight:700;text-transform:uppercase;font-size:.75rem">Niveau '+l+' · '+levelWord(l)+'</small><p style="margin:.3rem 0"><strong>'+esc(m.b.name)+'</strong><br><span class="code">'+m.c.c+'</span></p><p class="muted" style="margin:0 0 8px;font-size:.88rem">'+esc(m.c.t)+'</p>'+(l===level&&!unknown?'<span class="muted" style="font-size:.85rem">Niveau choisi</span>':'<a class="btn ghost small" href="#/parcours/'+fam.id+'/'+cause.id+'/'+l+'">Voir ce niveau</a>')+'</div>';
+    }).join('')+'</div>';
+    h += '<h2 style="font-size:1.05rem;margin-top:22px">Pour votre fiche action</h2><p class="muted" style="margin-top:0">Extrait à copier puis à compléter. La question métacognitive est une proposition de cet outil, hors référentiel.</p>'
+      + '<label for="fa" class="sr" style="position:absolute;left:-999px">Extrait de fiche action</label><textarea class="fa" id="fa">'+esc(ficheText(cause, level, main, others))+'</textarea>'
+      + '<div class="row" style="margin-top:8px"><button class="btn small" data-act="copy">Copier l’extrait</button><span class="copied" id="cp" role="status"></span></div>';
+    h += '<div class="row" style="margin-top:22px"><a class="btn ghost small" href="#/parcours/'+fam.id+'">Autre cause pour cette pratique</a><a class="btn ghost small" href="#/parcours">Recommencer</a></div>';
+  }
+  app.innerHTML = h;
+}
+
+/* ---------- Repères ---------- */
+function viewReperes(){
+  app.innerHTML = '<h1 id="h" tabindex="-1">Repères et sources</h1>'
+   + '<p class="lead">Ce que contient le référentiel, comment lire ses tableaux, et ce qui relève de cet outil plutôt que de l’UNESCO.</p>'
+   + '<div class="card"><h2>Comment le référentiel est construit</h2><ul>'
+   + '<li><strong>Une matrice à deux dimensions</strong> (tableau 1, p. 19) : quatre aspects interdépendants et trois niveaux de progression. Leurs croisements donnent <strong>douze blocs de compétences</strong>.</li>'
+   + '<li><strong>Trois niveaux</strong> à aborder de façon itérative (p. 20-21) : Comprendre, Appliquer, Créer. Ils peuvent s’organiser en spirale sur plusieurs années.</li>'
+   + '<li><strong>Chaque bloc est détaillé dans les tableaux 2, 3 et 4</strong> (chapitre 4, p. 27-52) en quatre colonnes : compétences des apprenants, objectifs du programme (codes CG), méthodes pédagogiques recommandées, environnements d’apprentissage.</li>'
+   + '<li><strong>Les codes CG</strong> (par exemple CG4.2.2.1) désignent un objectif du programme : chapitre 4, niveau 2, bloc 2, objectif 1.</li></ul></div>'
+   + '<div class="card" style="margin-top:14px"><h2>Intitulés : tableau 1 et chapitre 4</h2><p>Quelques blocs portent un intitulé légèrement différent dans le tableau 1 et dans le chapitre 4. Ce site affiche l’intitulé du tableau 1 et rappelle celui du chapitre 4.</p><ul>'
+   + BLOCKS.filter(function(b){return b.alt && b.alt!=="Embodied ethics" && b.alt!=="Ethics by design";}).map(function(b){return '<li>'+esc(b.id)+' : « '+esc(b.name)+' » / « '+esc(b.alt)+' »</li>';}).join('')+'</ul></div>'
+   + '<div class="card" style="margin-top:14px"><h2>Ce qui vient de l’UNESCO, ce qui vient de cet outil</h2><dl class="gl">'
+   + '<dt>Repris du référentiel</dt><dd>Les intitulés des blocs, les libellés des objectifs (CG), la liste des méthodes pédagogiques et des environnements, les références de pages. Les textes longs sont condensés sans en changer le sens.</dd>'
+   + '<dt>Ajouté par cet outil</dt><dd>Les « lectures rapides » en tête de fiche, le parcours guidé (association entre pratiques d’élèves et compétences), les questions métacognitives proposées et le gabarit d’extrait de fiche action. Ces associations sont des propositions de travail, à discuter entre collègues.</dd>'
+   + '<dt>À vérifier</dt><dd>Le parcours choisit une compétence principale par niveau, mais une même pratique peut relever de plusieurs blocs : la rubrique « À regarder aussi » le signale.</dd></dl></div>'
+   + '<div class="card" style="margin-top:14px"><h2>Sources</h2><ul><li>UNESCO, <em>Référentiel de compétences en IA pour les apprenants</em>, chapitre 3 « Structure du référentiel » (p. 18-21) et chapitre 4 « Spécifications des compétences en IA pour les apprenants » (p. 27-52), tableaux 1 à 4.</li></ul></div>';
+}
+
+/* ---------- Routage ---------- */
+var cur = "";
+try{ cur = location.hash || ""; }catch(_){ cur = ""; }
+function go(h){
+  cur = h;
+  try{ if(history.replaceState) history.replaceState(null,"",h); }catch(_){}
+  route();
+}
+function route(){
+  var parts = cur.replace(/^#\/?/,"").split("/").filter(Boolean);
+  var top = parts[0] || "carte";
+  Array.prototype.forEach.call(document.querySelectorAll("nav.main a"), function(a){
+    var on = (a.getAttribute("data-nav")===top) || (top==="bloc" && a.getAttribute("data-nav")==="carte");
+    if(on) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current");
+  });
+  if(top==="bloc") viewBloc(parts[1]);
+  else if(top==="parcours") viewParcours(parts.slice(1));
+  else if(top==="reperes") viewReperes();
+  else viewCarte(parts[1]==="niveau" ? parts[2] : "");
+  var t = (document.getElementById("h")||{}).textContent;
+  document.title = (t ? t + " · " : "") + "Compétences IA des apprenants";
+  window.scrollTo(0,0);
+  var hh = document.getElementById("h"); if(hh) hh.focus({preventScroll:true});
+}
+window.addEventListener("hashchange", function(){ try{ if(location.hash && location.hash!==cur){ cur=location.hash; route(); } }catch(_){} });
+window.addEventListener("click", function(e){
+  var el = e.target; if(el && el.nodeType===3) el = el.parentNode;
+  var a = el && el.closest && el.closest('a[href^="#/"]');
+  if(!a || e.button || e.ctrlKey || e.metaKey || e.shiftKey) return;
+  e.preventDefault(); e.stopImmediatePropagation();
+  try{ go(a.getAttribute("href")); }catch(err){ showErr(err); }
+}, true);
+function showErr(err){
+  var d=document.getElementById("errbox");
+  if(!d){ d=document.createElement("div"); d.id="errbox"; d.setAttribute("role","alert"); d.style.cssText="position:fixed;left:8px;right:8px;bottom:8px;z-index:99;background:#fff3f0;color:#7a1a10;border:2px solid #a3261b;border-radius:8px;padding:8px 12px;font:13px system-ui"; document.body.appendChild(d); }
+  d.textContent="Erreur technique (à transmettre) : "+(err&&err.message?err.message:err);
+}
+window.addEventListener("error", function(e){ showErr(e.message); });
+document.addEventListener("click", function(e){
+  var t = e.target.closest("[data-act]"); if(!t) return;
+  var act = t.getAttribute("data-act");
+  if(act==="toggle"){
+    var ds = document.querySelectorAll("#app details"), anyClosed = Array.prototype.some.call(ds,function(d){return !d.open;});
+    Array.prototype.forEach.call(ds,function(d){d.open = anyClosed;});
+  } else if(act==="copy"){
+    var ta = document.getElementById("fa"), cp = document.getElementById("cp");
+    function ok(){ cp.textContent = "Copié."; setTimeout(function(){cp.textContent="";},2500); }
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(ta.value).then(ok, function(){ ta.select(); try{document.execCommand("copy"); ok();}catch(_){cp.textContent="Sélectionnez le texte et copiez-le.";} }); }
+    else { ta.select(); try{document.execCommand("copy"); ok();}catch(_){cp.textContent="Sélectionnez le texte et copiez-le.";} }
+  }
+});
+route();
+})();
+</script>
+</body>
+</html>
